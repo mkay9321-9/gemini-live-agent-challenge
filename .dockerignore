@@ -1,0 +1,38 @@
+# =============================================================================
+# .dockerignore - Excluded from Docker build context
+# =============================================================================
+# Summary: Reduces image size and build time by excluding dev artifacts, secrets,
+# and generated files. Never include .env (contains API keys).
+# =============================================================================
+
+# Virtual environments (large, not needed in image)
+.venv/
+venv/
+env/
+
+# Git metadata
+.git/
+.gitignore
+
+# Python bytecode and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Environment and secrets - NEVER include in image (use Secret Manager in prod)
+.env
+.env.*
+
+# Tests and docs (not needed at runtime)
+tests/
+*.md
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo

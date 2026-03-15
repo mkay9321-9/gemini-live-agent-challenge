@@ -1,0 +1,30 @@
+# =============================================================================
+# .gitignore - Excluded from version control
+# =============================================================================
+# Summary: Keeps secrets, venvs, and build artifacts out of the repo.
+# Never commit app/.env (contains GOOGLE_API_KEY).
+# =============================================================================
+
+# Environment and secrets (API keys, etc.)
+app/.env
+.env
+*.env.local
+
+# Python virtual environments and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store

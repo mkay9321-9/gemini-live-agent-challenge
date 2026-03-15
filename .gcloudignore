@@ -1,0 +1,37 @@
+# =============================================================================
+# .gcloudignore - Excluded from gcloud run deploy --source .
+# =============================================================================
+# Summary: Files excluded when uploading source to Cloud Build. Prevents
+# "ZIP does not support timestamps before 1980" (from .venv, etc.).
+# Syntax mirrors .gitignore. See: gcloud topic gcloudignore
+# =============================================================================
+
+# Virtual environments (often have problematic timestamps; also large)
+.venv/
+venv/
+env/
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Git
+.git/
+.gitignore
+
+# Environment and secrets (use Secret Manager in Cloud Run)
+.env
+.env.*
+
+# Tests and docs (not needed for build)
+tests/
+*.md
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store

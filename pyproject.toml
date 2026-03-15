@@ -1,0 +1,62 @@
+# =============================================================================
+# pyproject.toml - Python project configuration
+# =============================================================================
+# Summary: Defines package metadata, dependencies, and build settings for the
+# Live Restaurant Menu Agent. Uses uv/pip for install; hatchling for wheel build.
+# Hackathon: Live Agents category - ADK + Gemini Live API + Google Cloud.
+# =============================================================================
+
+# --- Project metadata ---
+[project]
+name = "gemini-challenge-2026"
+version = "1.0.0"
+description = "Menu Translator Agent - ADK Gemini Live API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "maulik.r.shah@gmail.com" }
+]
+
+# --- Runtime dependencies (ADK, FastAPI, uvicorn) ---
+dependencies = [
+    "google-adk>=1.20.0",
+    "fastapi>=0.115.0",
+    "python-dotenv>=1.0.0",
+    "uvicorn[standard]>=0.32.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+]
+
+# --- Build system (hatchling for wheel) ---
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# --- Linting (ruff) ---
+[tool.ruff]
+extend = "../../../pyproject.toml"
+
+[tool.ruff.lint]
+ignore = ["C901", "PLR0915"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "menu_translator_final"]
+
+[tool.uv]
+dev-dependencies = []
+
+# --- Hatch wheel: include app/ as package ---
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"app/static" = "share/menu-translator/static"
+"app/.env" = "share/menu-translator/.env.template"

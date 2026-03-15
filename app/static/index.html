@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Restaurant Menu Agent</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/app.js" type="module"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-title">
+        <h1>Live Restaurant Menu Agent</h1>
+        <div class="subtitle">Google Gemini Live Agent Challenge 2026</div>
+      </div>
+      <div class="connection-status">
+        <span class="status-indicator" id="statusIndicator"></span>
+        <span id="statusText">Connecting...</span>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <div class="container">
+        <div class="agent-presence idle" id="agentPresence">
+          <div class="agent-avatar">
+            <span class="agent-icon">🤖</span>
+          </div>
+          <div class="agent-status">
+            <span class="agent-status-text" id="agentStatusText">Ready</span>
+          </div>
+        </div>
+        <div id="messages"></div>
+
+        <div class="input-container">
+          <form id="messageForm">
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="message"
+                name="message"
+                placeholder="Type your message here..."
+                autocomplete="off"
+              />
+              <button type="submit" id="sendButton" disabled>Send</button>
+              <button type="button" id="startAudioButton">Start Call</button>
+              <button type="button" id="endCallButton" disabled>End Call</button>
+              <button type="button" id="uploadImageButton" disabled>📤 Upload Menu</button>
+              <input type="file" id="imageFileInput" accept="image/*" hidden />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="console-panel" hidden>
+        <div class="console-header">
+          <h2>Event Console</h2>
+          <div class="console-controls">
+            <label class="console-checkbox">
+              <input type="checkbox" id="showAudioEvents">
+              <span>Show audio</span>
+            </label>
+            <button id="clearConsole" class="console-clear-btn">Clear</button>
+          </div>
+        </div>
+        <div id="consoleContent" class="console-content"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
