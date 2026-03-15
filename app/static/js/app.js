@@ -18,6 +18,7 @@ let sessionId = "demo-session-" + Math.random().toString(36).substring(7);
 let websocket = null;
 let is_audio = false;
 let userEndedCall = false;
+let pendingStartAudio = false;
 
 // Build WebSocket URL. Uses wss:// when served over HTTPS (e.g., Cloud Run).
 // Query params enable proactivity and affective_dialog for native audio models.
@@ -330,6 +331,19 @@ function connectWebsocket() {
     document.getElementById("uploadImageButton").disabled = false;
     updateAgentStatus("idle", "Ready");
     addSubmitHandler();
+
+    if (pendingStartAudio) {
+      pendingStartAudio = false;
+      startAudio();
+      is_audio = true;
+      document.getElementById("endCallButton").disabled = false;
+      document.getElementById("startAudioButton").disabled = true;
+      addSystemMessage("Audio mode enabled - you can now speak to the agent");
+      addConsoleEntry('outgoing', 'Audio Mode Enabled', {
+        status: 'Audio worklets started',
+        message: 'Microphone active - audio input will be sent to agent'
+      }, '🎤', 'system');
+    }
   };
 
   // Handle incoming ADK events: transcriptions, content (text/audio), turnComplete, interrupted
@@ -719,7 +733,10 @@ function connectWebsocket() {
     document.getElementById("uploadImageButton").disabled = true;
 
     if (userEndedCall) {
-      addSystemMessage("Call ended. Refresh the page to start a new session.");
+      statusText.textContent = "Call Ended";
+      document.getElementById("startAudioButton").disabled = false;
+      document.getElementById("uploadImageButton").disabled = false;
+      addSystemMessage("Call ended. Click Start Call or Upload Menu to start a new session.");
       addConsoleEntry('outgoing', 'Call ended by user', null, '📞', 'system');
     } else {
       addSystemMessage("Connection closed. Reconnecting in 5 seconds...");
@@ -962,6 +979,12 @@ function stopAudio() {
 // (due to the gesture requirement for the Web Audio API)
 const startAudioButton = document.getElementById("startAudioButton");
 startAudioButton.addEventListener("click", () => {
+  if (!websocket || websocket.readyState !== WebSocket.OPEN) {
+    pendingStartAudio = true;
+    sessionId = "demo-session-" + Math.random().toString(36).substring(7);
+    connectWebsocket();
+    return;
+  }
   startAudioButton.disabled = true;
   startAudio();
   is_audio = true;

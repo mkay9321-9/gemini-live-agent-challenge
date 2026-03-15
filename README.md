@@ -221,7 +221,8 @@ gemini-challenge-2026/
 │           ├── pcm-player-processor.js  # Audio processing
 │           └── pcm-recorder-processor.js # Audio processing
 ├── docs/
-│   └── architecture-diagram.png  # Architecture diagram (for Devpost carousel)
+│   ├── architecture-diagram.png  # Architecture diagram (for Devpost carousel)
+│   └── GIT_GUIDE.md              # Git setup and ongoing workflow reference
 ├── scripts/
 │   └── deploy.sh               # Cloud Run deploy script
 ├── Dockerfile                  # Container build for Cloud Run

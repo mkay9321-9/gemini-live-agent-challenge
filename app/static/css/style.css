@@ -171,6 +171,7 @@ header .subtitle {
   text-align: center;
   flex-shrink: 0;
   box-sizing: border-box;
+  align-self: center;
 }
 
 .agent-status-text {
@@ -897,6 +898,8 @@ button {
     line-height: 1.5;
     text-align: center;
     box-sizing: border-box;
+    align-self: center;
+    display: block;
   }
 
   #messages {
