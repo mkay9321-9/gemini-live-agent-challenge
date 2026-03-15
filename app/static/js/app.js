@@ -719,10 +719,8 @@ function connectWebsocket() {
     document.getElementById("uploadImageButton").disabled = true;
 
     if (userEndedCall) {
-      addSystemMessage("Call ended. Starting new session...");
+      addSystemMessage("Call ended. Refresh the page to start a new session.");
       addConsoleEntry('outgoing', 'Call ended by user', null, '📞', 'system');
-      sessionId = "demo-session-" + Math.random().toString(36).substring(7);
-      connectWebsocket();
     } else {
       addSystemMessage("Connection closed. Reconnecting in 5 seconds...");
       addConsoleEntry('error', 'WebSocket Disconnected', {
@@ -760,8 +758,9 @@ function connectWebsocket() {
 
 connectWebsocket();
 
-// End call button - closes WebSocket, ends session, then starts new session
+// End call button - stops audio, closes WebSocket, ends session, then starts new session
 document.getElementById("endCallButton").addEventListener("click", () => {
+  stopAudio();
   if (websocket && websocket.readyState === WebSocket.OPEN) {
     userEndedCall = true;
     websocket.close();
@@ -920,7 +919,7 @@ let micStream;
 
 // Import the audio worklets
 import { startAudioPlayerWorklet } from "./audio-player.js";
-import { startAudioRecorderWorklet } from "./audio-recorder.js";
+import { startAudioRecorderWorklet, stopMicrophone } from "./audio-recorder.js";
 
 // Start audio
 function startAudio() {
@@ -937,6 +936,26 @@ function startAudio() {
       micStream = stream;
     }
   );
+}
+
+// Stop audio: release microphone and close audio contexts
+function stopAudio() {
+  if (!is_audio) return;
+  if (micStream) {
+    stopMicrophone(micStream);
+    micStream = null;
+  }
+  if (audioRecorderContext) {
+    audioRecorderContext.close().catch(() => {});
+    audioRecorderContext = null;
+  }
+  if (audioPlayerContext) {
+    audioPlayerContext.close().catch(() => {});
+    audioPlayerContext = null;
+  }
+  audioRecorderNode = null;
+  audioPlayerNode = null;
+  is_audio = false;
 }
 
 // Start the audio only when the user clicked the button

@@ -161,14 +161,16 @@ header .subtitle {
 }
 
 .agent-welcome {
-  width: 75%;
-  margin: 0;
+  width: 75vw;
+  max-width: 36rem;
+  margin: 0 auto;
   padding: 0 0.5rem;
-  font-size: clamp(0.9375rem, 2.5vw, 1.0625rem);
+  font-size: clamp(0.8125rem, 2.5vw, 1.0625rem);
   line-height: 1.5;
   color: #202124;
   text-align: center;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .agent-status-text {
@@ -384,8 +386,8 @@ header .subtitle {
 }
 
 .input-wrapper #startAudioButton,
-.input-wrapper #endCallButton,
-.input-wrapper #uploadImageButton {
+.input-wrapper #uploadImageButton,
+.input-wrapper #endCallButton {
   flex: 1;
   width: 100%;
 }
@@ -483,12 +485,12 @@ button {
 }
 
 #uploadImageButton {
-  background-color: #34a853;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
 #uploadImageButton:hover:not(:disabled) {
-  background-color: #2d8e47;
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
   box-shadow: var(--shadow);
   transform: translateY(-1px);
 }
@@ -884,6 +886,17 @@ button {
 
   .agent-status-text {
     font-size: 0.9375rem;
+  }
+
+  .agent-welcome {
+    width: 75vw;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    font-size: clamp(0.7rem, 3.5vw, 0.875rem);
+    line-height: 1.5;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   #messages {
