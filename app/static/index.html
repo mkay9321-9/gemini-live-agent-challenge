@@ -29,6 +29,11 @@
           <div class="agent-status">
             <span class="agent-status-text" id="agentStatusText">Ready</span>
           </div>
+          <p class="agent-welcome">
+            Menu in any language. Answers in yours. Order with confidence, anywhere.<br>
+            Ingredients, spice, prices, dietary info, fun-facts, history—ask anything.<br>
+            <strong>Start Call</strong> to talk. <strong>Upload Menu</strong> to snap a photo.
+          </p>
         </div>
         <div id="messages"></div>
 
@@ -46,7 +51,7 @@
               <button type="button" id="startAudioButton">Start Call</button>
               <button type="button" id="endCallButton" disabled>End Call</button>
               <button type="button" id="uploadImageButton" disabled>📤 Upload Menu</button>
-              <input type="file" id="imageFileInput" accept="image/*" hidden />
+              <input type="file" id="imageFileInput" accept="image/*" capture="environment" hidden />
             </div>
           </form>
         </div>

@@ -757,6 +757,7 @@ function connectWebsocket() {
     }, '⚠️', 'system');
   };
 }
+
 connectWebsocket();
 
 // End call button - closes WebSocket, ends session, then starts new session

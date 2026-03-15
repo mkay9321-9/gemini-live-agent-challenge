@@ -96,7 +96,8 @@ header .subtitle {
   justify-content: center;
   gap: 1.25rem;
   padding: 2.5rem 2rem;
-  min-height: 180px;
+  min-height: 220px;
+  flex-shrink: 0;
   background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 50%, #e8f0fe 100%);
   border-bottom: 3px solid var(--primary-color);
   box-shadow: 0 4px 20px rgba(66, 133, 244, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -157,6 +158,17 @@ header .subtitle {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+}
+
+.agent-welcome {
+  width: 75%;
+  margin: 0;
+  padding: 0 0.5rem;
+  font-size: clamp(0.9375rem, 2.5vw, 1.0625rem);
+  line-height: 1.5;
+  color: #202124;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .agent-status-text {
@@ -856,8 +868,8 @@ button {
 
   .agent-presence {
     padding: 1rem;
-    min-height: 100px;
-    gap: 0.5rem;
+    min-height: 200px;
+    gap: 0.75rem;
   }
 
   .agent-avatar {

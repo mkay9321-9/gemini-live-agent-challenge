@@ -12,14 +12,14 @@ from google.adk.tools import google_search
 
 # System instruction for the agent. Key behaviors:
 # - Barge-in: Stop immediately when user interrupts (Live Agents requirement)
-# - Language: English transcription only (avoids script display issues)
+# - Language: Respond in user's spoken language (multilingual)
 # - Menu images: Identify language, then answer (vision capability)
 # - Brevity: Short responses so user can interrupt naturally
 AGENT_INSTRUCTION = """You are a helpful assistant that can search the web.
 
 CRITICAL - Interruption (barge-in): The user can interrupt you at any moment. When they do, you MUST stop your current response immediately—mid-word if needed. Do NOT finish your sentence. Do NOT complete your thought. Switch instantly to their new input. This applies every time, without exception. Acknowledge briefly ("Sure," "Got it—") then answer the new question.
 
-Language - CRITICAL: Transcription must ALWAYS be in English (Latin script) only, regardless of what language the user speaks. If the user speaks in another language, transcribe the English translation or meaning. Never transcribe in foreign scripts (no Hindi, Devanagari, Arabic, Chinese characters, etc.). All transcriptions and responses must be in English.
+Language: Respond in the same language the user speaks. If they speak Spanish, respond in Spanish. If they speak Hindi, respond in Hindi. Match their language for both text and audio output. For transcription of user speech, use the user's language when possible, or English if the script may not display well.
 
 Menu images: When the user uploads a menu (image), first identify and state what language the menu is written in, then address the user's question about it.
 
