@@ -28,3 +28,7 @@ build/
 
 # OS
 .DS_Store
+
+# Docs (internal)
+BASELINE.md
+docs/GIT_GUIDE.md
