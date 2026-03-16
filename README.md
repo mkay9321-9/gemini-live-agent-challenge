@@ -1,5 +1,7 @@
 # Live Restaurant Menu Agent
 
+**Repository:** [https://github.com/mkay9321-9/gemini-live-agent-challenge](https://github.com/mkay9321-9/gemini-live-agent-challenge)
+
 A real-time voice and vision agent built for the **Gemini Live Agent Challenge 2026**. Uses Google's Agent Development Kit (ADK) and Gemini Live API for bidirectional streaming—supporting text, audio, and image input with natural barge-in (interrupt the agent mid-response).
 
 ---
@@ -10,7 +12,8 @@ A real-time voice and vision agent built for the **Gemini Live Agent Challenge 2
 
 ```bash
 # 1. Clone and enter project
-cd gemini-challenge-2026
+git clone https://github.com/mkay9321-9/gemini-live-agent-challenge.git
+cd gemini-live-agent-challenge
 
 # 2. Install dependencies (uv recommended; or: pip install -e .)
 uv sync
