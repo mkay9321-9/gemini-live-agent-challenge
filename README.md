@@ -24,7 +24,7 @@ cp app/.env.template app/.env
 
 # 4. Run from app/ directory (required—Python imports depend on it)
 cd app
-uv run --project .. uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uv run --project .. python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 **5. Open** [http://localhost:8000](http://localhost:8000) in your browser.
